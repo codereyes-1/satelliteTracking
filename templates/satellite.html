@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- LEAFLET -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512=="
+   crossorigin=""></script>
+    <style>
+        #Your Current Location {
+        height: 180
+        }
+    </style>
+    <meta charset="UTF-8">
+    <!-- END LEAFLET -->
+    <title>Julio's Weather Map</title>
+</head>
+<body>
+    <div id="mapid" style = " height: 160px;  "></div>
+
+    
+    <script type=text/javascript>
+
+
+    //    const mymap = L.map('mapid').setView([{{lat}}, {{lon}}], 3);
+    const mymap = L.map('mapid').setView([0,0], 3);
+    //    const marker = L.marker([50.505, 30.57], {icon: myIcon}).addTo(mymap);
+       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVsaW9kbWFwcyIsImEiOiJjbGQyaWw1YnEwMnR1M3Zxb3ZkdHplYmlsIn0.iWVV8h64EnTi2Kxl0joRxQ', {
+       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+       maxZoom: 18,
+       id: 'mapbox/streets-v11',
+       tileSize: 512,
+       zoomOffset: -1,
+       }).addTo(mymap);
+       marker.setLatLng([{{lat}}, {{lon}}]);
+       marker.addTo(mymap)
+
+       var myIcon = L.icon({
+        iconUrl: 'image/ISS.svg',
+        iconSize: [40, 22],
+        iconAnchor: [69, 39],
+        popupAnchor: [-3, -76]
+       });
+       
+       const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+       
+       let firstTime = true; 
+
+       async function getISS() {
+           const response = await fetch(api_url);
+           const data = await response.json();
+           const { latitude, longitude } = data;
+
+           marker.setLatLng([latitude, longitude]);
+           if (firstTime) {
+           mymap.setView([latitude, longitude], 3);
+           firstTime = false;
+           }
+           document.getElementById('lat').textContent = latitude.toFixed(2);
+           document.getElementById('lon').textContent = longitude.toFixed(2);
+           }
+           getISS();
+
+           setInterval(getISS, 3000);
+
+    </script>
+        <h2> 
+            The identifier for this satellite is : {{ satellite }}
+        </h2>
+        <h2> 
+            The name of this satellite is : {{ satel }}
+        </h2>
+        <h1> 
+            The current velocity of the ISS is : {{ speed }} mph 
+        </h1>
+</body>
+</html>
