@@ -25,7 +25,8 @@
     <br>
     <br>
     <br>
-    <div id="issMap" style = " height: 160px;  "></div>
+    <div id="issMap" style = " height: 160px;  ">
+    </div>
 
     <h1> 
         <span id="name"> name of this satellite is : {{ satel }} </span>
@@ -34,60 +35,19 @@
         <span id="id"> name of this satellite is : {{ satellite }} </span>
     </h1>
     <h1> 
-        Current ISSvelocity : {{ velocity }}
+        Current ISSvelocity : 
         <span id="velocity"> </span>
     </h1>
     <h1> 
-        ISS latitude : {{ latitude }}
+        ISS latitude :
         <span id="lat"> </span>
     </h1>
     <h1> 
-        ISS longitude : {{ longitude }}
+        ISS longitude :
         <span id="lon"> </span>
     </h1>
 
-    <!-- <script type=text/javascript> -->
-
-        // const mymap = L.map('mapid').setView([{{ latitude }}, {{ longitude }}], 3);
-        const mymap = L.map('mapid').setView([0, 0], 3);
-        const tilesUrl = '&copy; <a href="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVsaW9kbWFwcyIsImEiOiJjbGQyaWw1YnEwMnR1M3Zxb3ZkdHplYmlsIn0.iWVV8h64EnTi2Kxl0joRxQ">'
-        const tiles = L.tileLayer(tilesUrl
-        );
-        tiles.addTo(mymap);
-        // marker.setLatLng([{{lat}}, {{lon}}]);
-        // marker.addTo(mymap)
-
-        var myIcon = L.icon({
-        iconUrl: '../image/ISS.svg',
-        iconSize: [40, 22],
-        iconAnchor: [69, 39],
-        popupAnchor: [-3, -76]
-        });
-       
-       const marker = L.marker([0, 0], {icon: issIcon}).addTo(mymap);
-
-       const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
-       
-       let firstTime = true; 
-
-       async function getISS() {
-           const response = await fetch(api_url);
-           const data = await response.json();
-           const { latitude, longitude } = data;
-
-           marker.setLang([{{ latitude }}, {{ longitude }}], 3)
-           if (firstTime) {
-           mymap.setView([latitude, longitude], 3);
-           firstTime = false;
-           }
-           document.getElementById('lat').textContent = latitude.toFixed(2);
-           document.getElementById('lon').textContent = longitude.toFixed(2);
-           }
-           getISS();
-
-           setInterval(getISS, 3000);
-
-    <!-- </script> -->
+ 
     <script type=text/javascript>        
 
         //Making a map and tiles
@@ -100,8 +60,8 @@
 
         //Making a marker with a custom icon
         var issIcon = L.icon({
-            iconUrl: 'images/ISS.svg',
-            iconSize: [120, 92],
+            iconUrl: '/assets/ISS.svg',
+            iconSize: [110, 82],
             iconAnchor: [70, 49],
         });
         const marker = L.marker([0, 0], {icon: issIcon}).addTo(mymap);
@@ -121,11 +81,9 @@
             // mymap = L.map('mapid').setView([{{ latitude }}, {{ longitude }}], 3);
             firstTime = false;
             }
-            document.getElementById('lat').textContent = latitude.toFixed(2);
-            document.getElementById('lon').textContent = longitude.toFixed(2);
-            document.getElementById('name').textContent = satel.toFixed(2);
-            document.getElementById('id').textContent = satellite.toFixed(2);
-            document.getElementById('velocity').textContent = speed.toFixed(2);
+            document.getElementById('lat').textContent = latitude;
+            document.getElementById('lon').textContent = longitude;
+            document.getElementById('velocity').textContent = velocity;
         }
         getISS();
 
