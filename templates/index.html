@@ -2,17 +2,25 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Julio's Weather Map</title>
+        <title>🛰️whereISSat</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+        <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/d6075b1921.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <form method="POST" action="/satellite.html" >
             <br>
-            Satellite:
-            <select name="satellite">
-                <option value="25544">Satellite #25544</option>
-                <!-- Add more options here -->
-            </select>
-            <input type="submit">
+            <br>
+            <i class="fas fa-space fa-3x"></i>
+            <p class="lead">Satellite:
+                <select name="satellite">
+                    <option value="25544">Satellite #25544</option>
+                    <!-- Add more options here -->
+                </select>
+                <input type="submit"> 
         </form>
     </body>
 </html>
