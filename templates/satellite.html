@@ -88,7 +88,7 @@
 
             marker.setLatLng([latitude, longitude]);
             if (firstTime) {
-            mymap.setView([latitude, longitude], 2);
+            mymap.setView([latitude, longitude], 3);
             // mymap = L.map('mapid').setView([{{ latitude }}, {{ longitude }}], 3);
             firstTime = false;
             }
@@ -98,7 +98,7 @@
         }
         getISS();
 
-        setInterval(getISS, 3000);
+        setInterval(getISS, 2200);
     </script>
         
 </body>
