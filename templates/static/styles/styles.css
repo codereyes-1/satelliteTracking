@@ -1,7 +1,12 @@
-body {
-    background-image: url('../../iss_pic/iss-station-earth.jpg');
+/* body {
+    background-image: url('/templates/iss_pic/iss-station-earth.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-  }
+  } */
 
+.body {
+  position: relative;
+  background-image: url('/templates/iss_pic/iss-station-earth.jpg');
+  height: 100vh;
+}

@@ -21,31 +21,33 @@
     <title>🛰️HereISSat</title>
 </head>
 <body>
-
     <br>
     <br>
     <br>
     <div id="issMap" style = " height: 160px;  ">
     </div>
-
-    <h1> 
-        <span id="name"> Satellite Name : {{ satel }} </span>
-    </h1>
-    <h1> 
-        <span id="id"> Satellite ID : {{ satellite }} </span>
-    </h1>
-    <h1> 
-        Current ISS velocity : 
-        <span id="velocity"> </span>
-    </h1>
-    <h1> 
-        ISS latitude :
-        <span id="lat"> </span>
-    </h1>
-    <h1> 
-        ISS longitude :
-        <span id="lon"> </span>
-    </h1>
+    <section class ="row mt-5">
+        <div class="col-md-8 m-auto">
+            <h1> 
+                <span id="name"> Satellite Name : {{ satel }} </span>
+            </h1>
+            <h1> 
+                <span id="id"> Satellite ID : {{ satellite }} </span>
+            </h1>
+            <h1> 
+                Current velocity : 
+                <span id="velocity"> </span>
+            </h1>
+            <h1> 
+                ISS latitude :
+                <span id="lat"> </span>
+            </h1>
+            <h1> 
+                ISS longitude :
+                <span id="lon"> </span>
+            </h1>
+        </div>
+    </section>
 
  
     <script type=text/javascript>        
