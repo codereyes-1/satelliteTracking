@@ -5,8 +5,7 @@
     background-position: center;
   } */
 
-.body {
-  position: relative;
-  background-image: url('/templates/iss_pic/iss-station-earth.jpg');
-  height: 100vh;
+
+.image-class {
+  background-image: url('static/assets/ISS.svg');
 }

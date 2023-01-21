@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request
 import requests
-import time
 from concurrent.futures import ThreadPoolExecutor
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__, template_folder='templates', static_folder='templates/static')
 
 @app.route('/satellite.html', methods=['POST'])
 def satellite():
@@ -18,7 +17,6 @@ def satellite():
     longit = satelliteData['longitude']
     velocity = "{:,}".format(satelliteData['velocity'])
     return render_template('satellite.html', satellite=id, satel=name, speed=velocity, latitude=latit, longitude=longit)
-
 
 
 @app.route('/')
