@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="image-div" href="{{ url_for('static', filename='assets/ISS.svg') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
     <!-- LEAFLET -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="anonymous">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin="anonymous"></script>
@@ -17,38 +18,45 @@
     <title>🛰️HereISSat</title>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-    <div id="issMap" style = " height: 160px;  ">
-    </div>
-    <section class ="row mt-5">
-        <div class="col-md-8 m-auto">
-            <h1> 
-                <span id="name"> Satellite Name : {{ satel }} </span>
-            </h1>
-            <h1> 
-                <span id="id"> Satellite ID : {{ satellite }} </span>
-            </h1>
-            <h1> 
-                Current velocity : 
-                <span id="velocity"> </span>
-            </h1>
-            <h1> 
-                ISS latitude :
-                <span id="lat"> </span>
-            </h1>
-            <h1> 
-                ISS longitude :
-                <span id="lon"> </span>
-            </h1>
+    <section class="container">
+        <br>
+        <br>
+        <br>
+        <div id="issMap" style = " height: 160px;  ">
         </div>
-        <div class="image-div">
-            <img src="static/iss_pic/videoblocks-4k-flight-iss.png" alt="ISS">
-        </div>
+        <section class ="row mt-5">
+            <div class="col-md-8 m-auto">
+                <h1> 
+                    <span id="name"> Satellite Name : {{ satel }} </span>
+                </h1>
+                <h1> 
+                    <span id="id"> Satellite ID : {{ satellite }} </span>
+                </h1>
+                <h1> 
+                    Current velocity : 
+                    <span id="velocity"> </span>
+                </h1>
+                <h1> 
+                    ISS latitude :
+                    <span id="lat"> </span>
+                </h1>
+                <h1> 
+                    ISS longitude :
+                    <span id="lon"> </span>
+                </h1>
+            </div>
+            <div class="image-div">
+                <img src="static/iss_pic/videoblocks-4k-flight-iss.png" alt="ISS">
+            </div>
+        </section>
     </section>
 
     <script type=text/javascript>        
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                if (isMobile) {
+                    document.querySelector("body").classList.add("mobile");
+                }
 
         // Making a map and tiles
         const mymap = L.map('issMap').setView([0, 0], 3);
