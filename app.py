@@ -5,6 +5,13 @@ from concurrent.futures import ThreadPoolExecutor
 app = Flask(__name__, template_folder='templates', static_folder='templates/static')
 
 
+app.get('/.well-known/acme-challenge/<string:id>', methods=['GET'])
+def acme_challenge(id):
+    # code to handle the request and return the certbot provided id
+    with open('certbot_id.txt') as f:
+        id = f.read()
+    return id
+
 @app.route('/satellite.html', methods=['POST'])
 def satellite():
     BASE_URL = "https://api.wheretheiss.at"
@@ -24,13 +31,6 @@ def satellite():
 def index():
     return render_template('index.html')
 
-
-@app.route('/.well-known/acme-challenge/<string:id>', methods=['GET'])
-def acme_challenge(id):
-    # code to handle the request and return the certbot provided id
-    with open('certbot_id.txt') as f:
-        id = f.read()
-    return id
 
 
 
