@@ -5,13 +5,6 @@ from concurrent.futures import ThreadPoolExecutor
 app = Flask(__name__, template_folder='templates', static_folder='templates/static')
 
 
-# @app.route('/.well-known/acme-challenge/<string:id>')
-# def acme_challenge(id):
-#     with open('.well-known/acme-challenge/'+'Yn7k76RyK2e1nW21GLaVmCAliU3jl1rJ93KNKV-TQtE'+'.txt') as f:
-#         id = f.read()
-#     return id
-
-
 @app.before_request
 def before_request():
     if request.url.startswith('http://'):
