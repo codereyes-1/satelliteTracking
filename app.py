@@ -1,16 +1,30 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__, template_folder='templates', static_folder='templates/static')
 
 
-@app.get('/.well-known/acme-challenge/<string:id>', methods=['GET'])
+# @app.route('/.well-known/acme-challenge/<string:id>')
+# def acme_challenge(id):
+#     with open('.well-known/acme-challenge/'+'Yn7k76RyK2e1nW21GLaVmCAliU3jl1rJ93KNKV-TQtE'+'.txt') as f:
+#         id = f.read()
+#     return id
+
+
+@app.before_request
+def before_request():
+    if request.url.startswith('http://'):
+        url = request.url.replace('http://', 'https://', 1)
+        code = 301
+        return redirect(url, code=code)
+
+@app.route('/.well-known/acme-challenge/<string:id>')
 def acme_challenge(id):
-    # code to handle the request and return the certbot provided id
-    with open('certbot_id.txt') as f:
-        id = f.read()
-    return id
+    with open('.well-known/acme-challenge/'+id+'.txt') as f:
+        certbot_id = f.read()
+    return certbot_id
+
 
 @app.route('/satellite.html', methods=['POST'])
 def satellite():
@@ -30,7 +44,6 @@ def satellite():
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 
 
